@@ -13,4 +13,4 @@ Build
 *.suo
 *.xcodeproj
 *.xcworkspace
-/.idea
+.idea
