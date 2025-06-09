@@ -33,3 +33,37 @@ TArray<int32> UTileUtility::GetAdjacentIndices(int32 Index, int32 Rows, int32 Co
 
 	return Adjacent;
 }
+TArray<int32> UTileUtility::GetTilesAtMaxDistance(int32 Index, int32 Rows, int32 Cols, int32 MaxDistance)
+{
+	TSet<int32> Result;  // Use set to prevent duplicates
+	if (MaxDistance <= 0)
+		return Result.Array();
+
+	const int32 StartRow = Index / Cols;
+	const int32 StartCol = Index % Cols;
+
+	for (int32 Distance = 1; Distance <= MaxDistance; ++Distance)
+	{
+		for (int32 dRow = -Distance; dRow <= Distance; ++dRow)
+		{
+			int32 dCol = Distance - FMath::Abs(dRow);  // |dRow| + |dCol| == Distance
+
+			// Check left
+			int32 NewRow = StartRow + dRow;
+			int32 NewColLeft = StartCol - dCol;
+			if (NewRow >= 0 && NewRow < Rows && NewColLeft >= 0 && NewColLeft < Cols)
+				Result.Add(NewRow * Cols + NewColLeft);
+
+			// Check right (avoid duplicate if dCol == 0)
+			if (dCol != 0)
+			{
+				int32 NewColRight = StartCol + dCol;
+				if (NewRow >= 0 && NewRow < Rows && NewColRight >= 0 && NewColRight < Cols)
+					Result.Add(NewRow * Cols + NewColRight);
+			}
+		}
+	}
+
+	return Result.Array();
+}
+
