@@ -14,3 +14,4 @@ Build
 *.xcodeproj
 *.xcworkspace
 .idea
+steam_appid.txt
