@@ -9,7 +9,8 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
-				"Engine"
+				"Engine",
+				"SmoothSyncPlugin"
 			]
 		}
 	],
@@ -26,13 +27,16 @@
 			"Enabled": false
 		},
 		{
-			"Name": "SmoothSyncPlugin",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/c8f61b007fb44f4abcb7b0974cebff6b"
-		},
-		{
 			"Name": "HDRIBackdrop",
 			"Enabled": true
+		},
+		{
+			"Name": "SmoothSyncPlugin",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/c8f61b007fb44f4abcb7b0974cebff6b"
 		}
+	],
+	"TargetPlatforms": [
+		"Windows"
 	]
 }
